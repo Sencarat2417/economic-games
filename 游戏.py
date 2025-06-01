@@ -148,8 +148,8 @@ class MarketGame:
         self.black_market_stock -= self.black_demand
         self.base_currency += self.black_revenue
 
-        # Check if arrested in the black market
-        if random.random() < self.arrest_probability:
+        # Check if arrested in the black market (only if black market trade occurred)
+        if self.black_demand > 0 and random.random() < self.arrest_probability:
             messagebox.showerror("Game Over", "You have been arrested in the black market! Game Over.")
             self.root.destroy()
             return
